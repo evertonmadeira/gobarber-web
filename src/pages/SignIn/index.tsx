@@ -35,7 +35,7 @@ const SignIn: React.FC = () => {
           email: Yup.string()
             .required('E-mail obrigatório')
             .email('Digite um e-mail válido'),
-          senha: Yup.string().required('Senha obrigatória'),
+          password: Yup.string().required('Senha obrigatória'),
         });
 
         await schema.validate(data, {
@@ -60,7 +60,7 @@ const SignIn: React.FC = () => {
         addToast({
           type: 'error',
           title: 'Erro na autenticação',
-          description: 'E-mail ou senha incorretos',
+          description: 'Tente novamente',
         });
       }
     },
@@ -77,7 +77,7 @@ const SignIn: React.FC = () => {
 
               <Input name="email" icon={FiMail} placeholder="E-mail" />
               <Input
-                name="senha"
+                name="password"
                 icon={FiLock}
                 type="password"
                 placeholder="Senha"

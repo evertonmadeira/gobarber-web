@@ -23,16 +23,16 @@ const SignUp: React.FC = () => {
         formRef.current?.setErrors({});
 
         const schema = Yup.object().shape({
-          nome: Yup.string().required('Nome obrigatório'),
+          name: Yup.string().required('Nome obrigatório'),
           email: Yup.string().required('E-mail obrigatório'),
-          senha: Yup.string().min(6, 'Senha com no mínimo 6 caracteres'),
+          password: Yup.string().min(6, 'Senha com no mínimo 6 caracteres'),
         });
 
         await schema.validate(data, {
           abortEarly: false,
         });
 
-        await api.post('/users');
+        await api.post('/users', data);
 
         addToast({
           type: 'success',
@@ -72,16 +72,16 @@ const SignUp: React.FC = () => {
             <Form ref={formRef} onSubmit={handleSubmit}>
               <h1>Faça seu cadastro</h1>
 
-              <Input name="nome" icon={FiUser} placeholder="Usuário" />
+              <Input name="name" icon={FiUser} placeholder="Usuário" />
               <Input name="email" icon={FiMail} placeholder="E-mail" />
               <Input
-                name="senha"
+                name="password"
                 icon={FiLock}
                 type="password"
                 placeholder="Senha"
               />
 
-              <Button type="submit">Entrar</Button>
+              <Button type="submit">Cadastrar</Button>
             </Form>
 
             <Link to="/">
